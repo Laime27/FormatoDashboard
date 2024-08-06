@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mejorado</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+     
+        <aside id="sidebar" class="w-64 bg-white shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out fixed md:relative z-30 h-full">
+            <div class="flex items-center justify-center h-16 ">
+                <img src="https://via.placeholder.com/150x50?text=Logo" alt="Logo" class="h-8">
+            </div>
+            <nav class="mt-6">
+                <div class="px-6 py-2 text-gray-500 uppercase text-xs font-semibold">Menú</div>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-200">
+                    <i class="fas fa-tachometer-alt mr-3 "></i>
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-200 transition-colors duration-200">
+                    <i class="fas fa-shopping-cart mr-3 "></i>
+                    E-Commerce
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-200 transition-colors duration-200">
+                    <i class="fas fa-users mr-3 "></i>
+                    Usuarios
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-600 hover:bg-gray-200 transition-colors duration-200">
+                    <i class="fas fa-cog mr-3 "></i>
+                    Configuración
+                </a>
+            </nav>
+        </aside>
+
+       
+        <div class="flex-1 flex flex-col overflow-hidden">
+         
+            <header class="bg-white shadow-sm z-20">
+                <div class="flex items-center justify-between px-6 py-3 h-16">
+                    <div class="flex items-center">
+                        <button id="menu-toggle" class="text-gray-500 focus:outline-none md:hidden">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                      
+                    </div>
+                    <div class="flex items-center">
+                        <button class="p-1 mr-4 text-gray-400 hover:text-gray-600 focus:outline-none" id="theme-toggle">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                        <div class="relative">
+                            <img class="h-8 w-8 rounded-full object-cover cursor-pointer" src="https://via.placeholder.com/150" alt="User profile" id="user-menu-button">
+                            <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50" id="user-menu">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Perfil</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Configuración</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cerrar sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+    
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+               
+                // Aquí va el contenido de la página
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.getElementById('user-menu');
+        const themeToggle = document.getElementById('theme-toggle');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth < 768 && !sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+
+        userMenuButton.addEventListener('click', () => {
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!userMenuButton.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = themeToggle.querySelector('i');
+            icon.classList.toggle('fa-sun');
+            icon.classList.toggle('fa-moon');
+        });
+    
+    </script>
+</body>
+
+</html>
